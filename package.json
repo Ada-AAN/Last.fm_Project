@@ -1,0 +1,25 @@
+{
+  "name": "sikkemha",
+  "version": "1.0.0",
+  "description": "This is a simple express server that relays data from Oxford Dictionary API to the frontend.",
+  "keywords": [],
+  "homepage": "https://github.com/Ada-AAN/Last.fm_Project#readme",
+  "bugs": {
+    "url": "https://github.com/Ada-AAN/Last.fm_Project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ada-AAN/Last.fm_Project.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {}
+}
