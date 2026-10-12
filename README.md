@@ -23,4 +23,3 @@ In this example the layout may appear differently on Mobile compared to on Deskt
 
 ## UML Use Case Diagram
 Check out the [UML Use Case Diagram](https://www.figma.com/community/file/1551984417684800177) for this demo on Figma.
-
