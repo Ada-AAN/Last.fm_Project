@@ -1,25 +1,45 @@
+
 import { createNavigation } from './navigation.js';
 import { createListings } from './listings.js';
 
-// fetch a simple list of all pokemon types (fighting, flying, etc.)
-// This only includes the name and url for each.
-const response = await fetch('https://ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key=2dacb3a42ac69ce58724a7f9d152b125&format=json&limit =20')
-const json = await response.json()
+try {
+  const response = await fetch('/tags');
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed: ${response.status}`);
+  }
 
-console.log('List of Genres', json.results)
+  if (!Array.isArray(data.tags?.tag)) {
+    console.error('Unexpected response from /tags:', data);
+    throw new Error('The server response did not contain a tags list; see the logged response.');
+  }
 
-// Let's get more details for each of the types of pokemon
-// this will include a list of member pokemon for each type  
-// note the use of Promise.all to fetch all at once
-const pokemonTypes = await Promise.all(
-  json.results.map(async (pokemonType) => {
-    const data = await fetch(pokemonType.url)
-    return data.json()
-  })
-)
-console.log('Pokemon Types with Details', pokemonTypes)
+  const tags = data.tags.tag;
+  const musicTypes = await Promise.all(
+    tags.map(async (tag) => {
+      const artistResponse = await fetch(`/artists?tag=${encodeURIComponent(tag.name)}`);
+      const artistData = await artistResponse.json();
 
-// Now we can build the navigation menu and listings for each type
-createNavigation(pokemonTypes)
-createListings(pokemonTypes)
+      if (!artistResponse.ok) {
+        throw new Error(`Could not load artists for "${tag.name}": ${artistData.error || artistResponse.status}`);
+      }
 
+      if (!Array.isArray(artistData.topartists?.artist)) {
+        console.error(`Unexpected artist response for "${tag.name}":`, artistData);
+        throw new Error(`The server response did not contain artists for "${tag.name}".`);
+      }
+
+      return {
+        name: tag.name,
+        url: tag.url,
+        artists: artistData.topartists.artist
+      };
+    })
+  );
+
+  console.log('Genres with Artists', musicTypes);
+  createListings(musicTypes);
+  createNavigation(musicTypes);
+} catch (error) {
+  console.error('Could not fetch Last.fm top tags:', error);
+}

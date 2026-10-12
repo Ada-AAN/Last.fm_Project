@@ -52,6 +52,13 @@ nav {
   margin-bottom: 2rem;
 }
 
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 button {
   padding: 10px 18px;
   border-radius: 0.5rem;
@@ -64,9 +71,40 @@ button {
 
 
 nav button {
-  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff2f2;
   font-size: 16px;
   text-shadow: 0 1px #222;
+  background: #9a9a9a;
+}
+
+.nav-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+ /* border-radius: 0%;*/
+}
+
+footer #image-credits {
+  padding: 0.5rem 2rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+footer #image-credits[hidden] {
+  display: none;
+}
+
+#image-credits summary {
+  cursor: pointer;
+  color: #555;
+}
+
+#image-credits ul {
+  margin: 0;
+  padding: 0.25rem 0 0 1.25rem;
 }
 
 button:hover {
@@ -83,23 +121,116 @@ section.active {
   height: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 4vw;
 }
 
 
 /* ---- .listing ---- */
 
 .listing {
+  padding: 10px 18px;
+  border: 1px solid #251010;
+ /* padding: 1rem;*/
+  background-color: rgba(250, 248, 248, 0.8);
+  display: block;
+    gap: 0.25rem;
+}
+
+.listing .artist-link {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  text-align: left;
+}
+
+.listing .artist-image {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  flex-shrink: 0;
+
+}
+
+.artist-profile-page {
+  max-width: 900px;
+  margin: 0 auto;
   padding: 1rem;
+  text-align: left;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.artist-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #251010;
+  background-color: rgba(250, 248, 248, 0.8);
+}
+
+.artist-profile[hidden] {
+  display: none;
+}
+
+.artist-profile-image {
+  width: 220px;
+  max-width: 40%;
+  height: auto;
+  object-fit: cover;
+}
+
+.artist-profile-name {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .artist-profile {
+    flex-direction: column;
+  }
+
+  .artist-profile-image {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.artist-albums-section {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.artist-albums {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.album-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .artist-albums {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .listing>button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: block;
+  /*flex-direction: row;
+  align-items: center;*/
   justify-content: start;
   width: 100%;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(253, 252, 252, 0.8);
+    gap: 0.25rem;
+      border-color: #191111;
 }
 
 .listing>button .open {
@@ -109,15 +240,16 @@ section.active {
 
 .listing>button:hover .open {
   opacity: 0.25;
+  border: #191111;
 }
 
 .listing img {
   width: 75px;
-
+  align-self: flex-start;
 }
 
 .listing .profile img {
-  align-self: center;
+  align-self: flex-start;
   width: 300px;
   max-width: 30vw;
 }
@@ -231,13 +363,26 @@ button.close {
   color: rgba(0, 0, 0, 0.5);
 }
 
+nav button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 
 /*Colours Via https://bulbapedia.bulbagarden.net/wiki/Type */
-.normal {
+.rock {
   background: #A8A878
 }
 
-.fire {
+.electronic {
   background: #F08030
 }
 

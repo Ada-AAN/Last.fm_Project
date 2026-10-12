@@ -7,7 +7,7 @@
     name="viewport"
     content="width=device-width"
   >
-  <title>Pokemon Types</title>
+  <title>Stats Central</title>
 
   <!-- Pokemon Font via https://www.cdnfonts.com/pokemon-solid.font -->
   <link
@@ -43,17 +43,21 @@
 
 <body>
   <header>
-    <img src="pokeball.svg">
-    <h1>Pokemon Types</h1>
+    <!-- <img src="pokeball.svg"> -->
+    <h1>Stats Central</h1>
   </header>
   <nav></nav>
   <main></main>
   <footer>
-
     <p>This demo illustrates how we can make multiple fetches on one page. We first fetch a list of pokemon types,
       followed by details for each. We then populate listings, such that each pokemon is connected to an individual
       fetch for details, which in turn are shown in a popover. Data fetched from the <a
-        href="https://pokeapi.co"></a>PokeAPI</p>
+        href="https://ws.audioscrobbler.com/2.0"></a>Last.fm API</p>
+
+    <details id="image-credits" hidden>
+      <summary>Image credits</summary>
+      <ul></ul>
+    </details>
 
   </footer>
   <script
