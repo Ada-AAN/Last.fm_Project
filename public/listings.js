@@ -3,13 +3,8 @@ import { getLocalArtistImage } from './artist-images.js';
 
 const createListings = (musicTypes) => {
   const main = document.querySelector('main');
-  const credits = document.querySelector('#image-credits');
-  const creditList = credits.querySelector('ul');
-  const creditedArtists = new Set();
 
   main.innerHTML = '';
-  creditList.innerHTML = '';
-  credits.hidden = true;
 
   musicTypes
     .filter((musicType) => musicType.artists.length > 0)
@@ -49,30 +44,11 @@ const createListings = (musicTypes) => {
       link.append(imageFrame, name);
       card.appendChild(link);
       main.appendChild(card);
-
-      if (!getLocalArtistImage(artist.name) && artist.wikipediaImage?.page
-        && !creditedArtists.has(artist.name)) {
-        creditedArtists.add(artist.name);
-        const credit = document.createElement('li');
-        const artistName = document.createElement('span');
-        artistName.textContent = `${artist.name}: `;
-
-        const source = document.createElement('a');
-        source.href = artist.wikipediaImage.page;
-        source.target = '_blank';
-        source.rel = 'noopener noreferrer';
-        source.textContent = 'Wikipedia';
-
-        credit.append(artistName, source);
-        creditList.appendChild(credit);
-        credits.hidden = false;
-      }
     });
 };
 
 const getArtistImage = (artist) =>
   getLocalArtistImage(artist.name)
-  || artist.wikipediaImage?.url
   || ['mega', 'extralarge', 'large']
     .map((size) => artist.image?.find((image) => image.size === size && image['#text']))
     .find(Boolean)?.['#text']

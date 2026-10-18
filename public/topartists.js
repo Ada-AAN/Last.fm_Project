@@ -1,13 +1,10 @@
 import { getArtistImage } from './listings.js';
-import { getLocalArtistImage } from './artist-images.js';
 
 const genreName = new URLSearchParams(window.location.search).get('genre');
 const title = document.querySelector('#genre-name');
 const grid = document.querySelector('.artist-grid');
 const status = document.querySelector('#top-artists-status');
 const loader = document.querySelector('.loader');
-const credits = document.querySelector('#image-credits');
-const creditList = credits.querySelector('ul');
 
 if (!genreName?.trim()) {
   loader.hidden = true;
@@ -49,11 +46,7 @@ async function loadTopArtists(genre) {
 }
 
 function renderArtists(artists, genre) {
-  const imageCredits = new Set();
-
   grid.replaceChildren();
-  creditList.replaceChildren();
-  credits.hidden = true;
 
   artists.forEach((artist, index) => {
     const card = document.createElement('article');
@@ -90,23 +83,5 @@ function renderArtists(artists, genre) {
     link.append(imageFrame, name);
     card.appendChild(link);
     grid.appendChild(card);
-
-    if (!getLocalArtistImage(artist.name) && !imageCredits.has(artist.name)
-      && artist.wikipediaImage?.page) {
-      imageCredits.add(artist.name);
-      const credit = document.createElement('li');
-      const artistName = document.createElement('span');
-      artistName.textContent = `${artist.name}: `;
-
-      const source = document.createElement('a');
-      source.href = artist.wikipediaImage.page;
-      source.target = '_blank';
-      source.rel = 'noopener noreferrer';
-      source.textContent = 'Wikipedia';
-
-      credit.append(artistName, source);
-      creditList.appendChild(credit);
-      credits.hidden = false;
-    }
   });
 }

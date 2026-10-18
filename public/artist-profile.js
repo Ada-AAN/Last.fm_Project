@@ -7,6 +7,14 @@ const profile = document.querySelector('#artist-profile');
 const backLink = document.querySelector('.back-link');
 const loader = document.querySelector('.loader');
 
+const getArtistBio = (bio) => {
+  const summary = bio?.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!summary || /^there (?:is more than one|are \w+) artists?\b/i.test(summary)) {
+    return 'No artist bio is available.';
+  }
+  return summary;
+};
+
 if (genreName) {
   backLink.href = `/topartists.html?genre=${encodeURIComponent(genreName)}`;
 }
@@ -40,8 +48,7 @@ try {
   profile.querySelector('.artist-profile-stats').textContent =
     `${Number(artist.stats?.listeners || 0).toLocaleString()} listeners · ` +
     `${Number(artist.stats?.playcount || 0).toLocaleString()} plays`;
-  profile.querySelector('.artist-profile-bio').textContent =
-    artist.bio?.summary?.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() || 'No artist bio is available.';
+  profile.querySelector('.artist-profile-bio').textContent = getArtistBio(artist.bio?.summary);
 
   const image = profile.querySelector('.artist-profile-image');
   if (imageURL) {

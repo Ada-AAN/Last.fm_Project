@@ -195,35 +195,25 @@ app.get('/artists', async (req, res) => {
             return res.status(502).json({ error: message, code: topArtistsData.error });
         }
 
-        const artists = topArtistsData.topartists?.artist ?? [];
-        for (const artist of artists) {
-            artist.wikipediaImage = null;
+        const artistsByName = new Map();
+        for (const artist of topArtistsData.topartists?.artist ?? []) {
+            const name = artist.name.trim().toLowerCase().replace(/\s+/g, ' ');
+            const current = artistsByName.get(name);
+            const listeners = Number(artist.listeners) || 0;
+            const currentListeners = current ? Number(current.listeners) || 0 : -1;
+            const playcount = Number(artist.playcount) || 0;
+            const currentPlaycount = current ? Number(current.playcount) || 0 : -1;
 
-            try {
-                const wikipediaUrl = new URL(
-                    `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(artist.name)}`
-                );
-                const wikipediaResponse = await fetch(wikipediaUrl);
-
-                if (wikipediaResponse.status === 404) {
-                    continue;
-                }
-
-                if (!wikipediaResponse.ok) {
-                    throw new Error(`Wikipedia returned HTTP ${wikipediaResponse.status}.`);
-                }
-
-                const wikipediaData = await wikipediaResponse.json();
-
-                if (wikipediaData.thumbnail?.source) {
-                    artist.wikipediaImage = {
-                        url: wikipediaData.thumbnail.source,
-                        page: wikipediaData.content_urls?.desktop?.page
-                    };
-                }
-            } catch (error) {
-                console.error(`Could not retrieve Wikipedia image for artist "${artist.name}":`, error);
+            if (!current
+                || listeners > currentListeners
+                || (listeners === currentListeners && playcount > currentPlaycount)) {
+                artistsByName.set(name, artist);
             }
+        }
+
+        const artists = [...artistsByName.values()];
+        if (topArtistsData.topartists) {
+            topArtistsData.topartists.artist = artists;
         }
 
         return res.json(topArtistsData);
