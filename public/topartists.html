@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Top Artists | Records Report</title>
+  <link href="https://fonts.cdnfonts.com/css/gajraj-one" rel="stylesheet">
+  <link
+    href="https://cdn.fonts.net/kit/7b6b1e00-8b68-11ec-9ce3-0220834439f4/7b6b1e00-8b68-11ec-9ce3-0220834439f4.css"
+    rel="stylesheet"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="top-artists-page">
+  <div class="loader" role="status" aria-label="Loading top artists">
+    <img src="images/records-record-default.svg" alt="">
+  </div>
+  <header class="top-artists-header">
+    <h1>TOP ARTISTS</h1>
+    <p id="genre-name"></p>
+  </header>
+  <div class="top-artists-back">
+    <a href="/index.html">Back to Top Genres</a>
+  </div>
+  <main class="artist-grid" aria-label="Top artists in this genre"></main>
+  <p id="top-artists-status" role="status" aria-live="polite"></p>
+  <footer class="charts-footer">
+    <p>Designed using the <a href="https://www.last.fm/api">Last.fm API</a></p>
+    <details id="image-credits" hidden>
+      <summary>Image credits</summary>
+      <ul></ul>
+    </details>
+  </footer>
+  <script src="topartists.js" type="module"></script>
+</body>
+
+</html>

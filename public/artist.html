@@ -4,21 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Artist Profile - Stats Central</title>
-  <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+  <title>Artist Profile | Records Report</title>
+  <link href="https://fonts.cdnfonts.com/css/gajraj-one" rel="stylesheet">
   <link
     href="https://cdn.fonts.net/kit/7b6b1e00-8b68-11ec-9ce3-0220834439f4/7b6b1e00-8b68-11ec-9ce3-0220834439f4.css"
     rel="stylesheet"
   />
   <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <header>
-    <h1>Stats Central</h1>
+<body class="artist-detail-page">
+  <div class="loader" role="status" aria-label="Loading artist and albums">
+    <img src="images/records-record-default.svg" alt="">
+  </div>
+  <header class="artist-profile-banner" aria-hidden="true">
+    <img src="images/artist-waveform.svg" alt="">
   </header>
   <main class="artist-profile-page">
-    <a class="back-link" href="/">Back to genres</a>
+    <a class="back-link" href="/topartists.html">Back to Top Artists</a>
     <p id="profile-status" role="status">Loading artist...</p>
     <article id="artist-profile" class="artist-profile" hidden>
       <img class="artist-profile-image" alt="">
@@ -26,13 +32,16 @@
         <h2 class="artist-profile-name"></h2>
         <p class="artist-profile-stats"></p>
         <p class="artist-profile-bio"></p>
-        <a class="artist-profile-lastfm" target="_blank" rel="noopener noreferrer">View on Last.fm</a>
+        <a class="artist-profile-lastfm" target="_blank" rel="noopener noreferrer">Read more on Last.fm</a>
       </div>
     </article>
-        <div class="top-albums-section">
+    <section class="artist-albums-section">
       <h2>Top Albums</h2>
-         <div id="artist-albums" class="artist-albums"></div>
-        </div>
+      <div id="artist-albums" class="artist-albums"></div>
+    </section>
+    <footer class="artist-profile-footer">
+      <p>Designed using the <a href="https://www.last.fm/api">Last.fm API</a></p>
+    </footer>
   </main>
   <script src="artist-profile.js" type="module"></script>
 </body>

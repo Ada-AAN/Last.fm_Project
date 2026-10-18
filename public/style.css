@@ -4,6 +4,499 @@ html {
   text-align: center;
 }
 
+.loader {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(38, 38, 33, 0.88);
+}
+
+.loader[hidden] {
+  display: none;
+}
+
+.loader img {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  animation: vinyl-spin 1.8s linear infinite;
+}
+
+@keyframes vinyl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader img {
+    animation: none;
+  }
+}
+
+
+.charts-page {
+  min-height: 100%;
+  padding: 0;
+  background: #262621;
+  color: #c1ac94;
+}
+
+.charts-header {
+  box-sizing: border-box;
+  justify-content: space-between;
+  min-height: 7.25rem;
+  margin: 0;
+  padding: 1rem 3.2vw 0.75rem;
+  background: #c1ac94;
+  color: #262621;
+  text-align: left;
+  font-family: 'Chreed', sans-serif;
+  font-weight: 700;
+}
+
+.charts-header h1 {
+  font-size: clamp(3.25rem, 9.7vw, 10.5rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 0.6;
+  text-align: left;
+}
+
+.charts-header time {
+  align-self: flex-end;
+  padding-bottom: 0.35rem;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.25rem, 3.1vw, 3.3rem);
+  line-height: 1;
+  white-space: nowrap;
+  font-weight: 900;
+}
+
+.genre-grid {
+  --grid-inset: 3.2vw;
+  --grid-gap: clamp(1rem, 6.3vw, 7rem);
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+  row-gap: clamp(1.25rem, 3vw, 3rem);
+  padding: 2rem var(--grid-inset) 0;
+}
+
+.genre-card {
+  min-width: 0;
+}
+
+.genre-card-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.genre-card-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #c1ac94;
+  text-align: left;
+  text-decoration: none;
+   transition: .2s;
+}
+
+.genre-card-link:hover {
+  outline: 3px double #dc631a;
+  transform: scale(1.1);
+  outline-offset: 4px;
+}
+
+
+
+
+.genre-card-image-frame {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #48483d;
+}
+
+.genre-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.genre-card-featured .genre-card-image-frame {
+  padding: 0.45rem;
+  border: 2px solid #c1ac94;
+}
+
+.genre-card-featured .genre-card-image {
+  border: 1px solid #c1ac94;
+}
+
+.genre-card-name {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #c1ac94;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(0.85rem, 1.6vw, 1.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+
+.genre-card-featured .genre-card-name {
+  font-size: clamp(2rem, 5.5vw, 5.8rem);
+}
+
+.charts-footer {
+  padding: 3rem 1rem 5rem;
+  color: #dc631a;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.charts-footer p {
+  margin: 0;
+  font-family: 'Utendo', sans-serif;
+}
+
+.charts-footer a {
+  color: inherit;
+}
+
+.charts-footer #image-credits {
+  max-width: 40rem;
+  margin: 2rem auto 0;
+  color: #c1ac94;
+}
+
+.top-artists-page {
+  min-height: 100%;
+  padding: 0;
+  background: #262621;
+  color: #c1ac94;
+}
+
+
+
+
+.top-artists-header {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 8rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.25rem 3.5vw 0.5rem;
+  background: #c1ac94;
+  color: #262621;
+  text-align: left;
+}
+
+.top-artists-header h1 {
+  font-size: clamp(3.25rem, 9.7vw, 10.5rem);
+  letter-spacing: 0;
+  line-height: 0.6;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.top-artists-header p {
+  max-width: 38vw;
+  margin: 0 0 0.3rem;
+  overflow-wrap: anywhere;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.1rem, 3.1vw, 3.3rem);
+  line-height: 1;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.top-artists-back {
+  padding: 3vw 3.5vw 3vw;
+  text-align: left;
+}
+
+.top-artists-back a {
+  color: #dc631a;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.top-artists-back a:hover {
+  color: #AD3230;
+}
+
+.top-artists-back a:focus-visible {
+  outline: 2px solid #dc631a;
+  outline-offset: 3px;
+}
+
+.artist-grid {
+  --grid-inset: 3.2vw;
+  --grid-gap: clamp(1.25rem, 6.3vw, 7rem);
+  display: grid;
+  grid-auto-rows: calc((100vw - 2 * var(--grid-inset) - 4 * var(--grid-gap)) / 5 + clamp(1rem, 2.2vw, 2rem));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+  row-gap: clamp(1.5rem, 4.5vw, 3rem);
+  padding: 1rem var(--grid-inset) 0;
+}
+
+.artist-card {
+  min-width: 0;
+}
+
+.artist-card-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.artist-card-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #c1ac94;
+  text-align: left;
+  text-decoration: none;
+    transition: .2s;
+}
+
+/*genre-card-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #c1ac94;
+  text-align: left;
+  text-decoration: none;
+   transition: .2s;
+}
+
+.genre-card-link:hover {
+  outline: 3px double #dc631a;
+  transform: scale(1.1);
+  outline-offset: 4px;
+}*/
+
+
+.artist-card-link:hover {
+   outline: 3px double #dc631a;
+  transform: scale(1.1);
+  outline-offset: 4px;
+}
+
+.artist-card-image-frame {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  background: #48483d;
+}
+
+.artist-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-card-featured .artist-card-image-frame {
+  padding: 0.45rem;
+  border: 2px solid #c1ac94;
+}
+
+.artist-card-featured .artist-card-image {
+  border: 1px solid #c1ac94;
+}
+
+.artist-card-name {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #c1ac94;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1.6vw, 1.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.artist-card-featured .artist-card-name {
+  font-size: clamp(1.75rem, 4vw, 4.5rem);
+  text-wrap: balance;
+}
+
+#top-artists-status {
+  margin: 1rem 3.2vw;
+  color: #c1ac94;
+  text-align: left;
+}
+
+#top-artists-status:empty {
+  display: none;
+}
+
+#top-artists-status[role="alert"] {
+  color: #ed9994;
+}
+
+.top-artists-page #image-credits {
+  max-width: 40rem;
+  margin: 2rem auto 0;
+  color: #c1ac94;
+}
+
+.home-page {
+  min-height: 100%;
+  padding: 0;
+  background: #262621;
+  color: #c1ac94;
+}
+
+.landing {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem 28vh;
+  overflow: hidden;
+  background: #262621;
+}
+
+.landing-content {
+  width: 100%;
+}
+
+.landing-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  color: #c1ac94;
+  font-family: 'Pincoyablack', sans-serif;
+  font-size: clamp(2rem, 9.4vw, 8.9rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.9;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.landing-mark {
+  position: relative;
+  display: grid;
+  width: 0.58em;
+  height: 0.58em;
+  flex: 0 0 0.58em;
+}
+
+.landing-mark img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%) scale(0.35);
+}
+
+.landing-mark img:hover{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%) scale(0.35);
+   transition: 0.3s;
+}
+
+
+.landing-report {
+  margin-left: 0.16em;
+}
+
+.landing-subtitle {
+  margin: 1.3rem 0 2rem;
+  color: #c1ac94;
+  font-family: 'TwentiethCenturyMedium', sans-serif;
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
+  line-height: 1.2;
+}
+
+.landing-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 2.2rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: #bc3633;
+  color: #262621;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.25rem, 3.4vw, 2rem);
+  line-height: 1.2;
+  text-decoration: none;
+  text-shadow: none;
+  transition:
+    background-color 180ms ease,
+    border-radius 180ms ease,
+    padding 180ms ease;
+}
+
+.landing-cta span {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+.landing-cta:hover,
+.landing-cta:focus-visible {
+  padding: 0.48rem 2.34rem;
+  border-radius: 0.85rem;
+  background: #c1ac94;
+}
+
+.landing-cta:hover span,
+.landing-cta:focus-visible span {
+  transform: scale(1.066);
+}
+
+.landing-cta:focus-visible {
+  outline: 3px solid #c1ac94;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-cta,
+  .landing-cta span {
+    transition: none;
+  }
+}
+
+.dashboard[hidden] {
+  display: none;
+}
+
+.dashboard {
+  min-height: 100vh;
+  padding: 1px 40px;
+  background: #fff;
+  color: #222;
+}
+
 body {
   font-family: 'TwentiethCenturyMedium', sans-serif;
   margin: 0;
@@ -12,7 +505,7 @@ body {
 }
 
 h1 {
-  font-family: 'Pokemon Solid', sans-serif;
+  font-family: 'Chreed', sans-serif;
   font-size: 3rem;
   letter-spacing: 0.25rem;
   margin: 0;
@@ -21,16 +514,16 @@ h1 {
 }
 
 h2 {
-
+font-family: 'Chreed', sans-serif;
   font-size: 2rem;
   padding: 0px;
   margin: 0px 0px 1rem;
-  font-family: 'Pokemon Solid', sans-serif;
   line-height: 3rem;
   letter-spacing: 0.25rem;
 }
 
 h3 {
+  font-family: 'Magical Childhood', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +545,11 @@ nav {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
+ text-decoration: none;
+}
+
+.nav:active  {
+  text-decoration: none;
 }
 
 .nav-item {
@@ -59,6 +557,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+   text-decoration: none;
 }
 
 button {
@@ -136,20 +635,31 @@ section.active {
   background-color: rgba(250, 248, 248, 0.8);
   display: block;
     gap: 0.25rem;
+     text-decoration: none;
 }
 
 .listing .artist-link {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 1rem;
   text-align: left;
+   text-decoration: none;
+   color: #000;
+   font-size: 20px;
 }
+
+.listing .artist-link span{
+  flex: 1;
+  text-align: left;
+}
+
 
 .listing .artist-image {
   width: 75px;
   height: 75px;
   object-fit: cover;
   flex-shrink: 0;
+
 
 }
 
@@ -158,6 +668,70 @@ section.active {
   margin: 0 auto;
   padding: 1rem;
   text-align: left;
+}
+
+.artist-detail-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  overflow-x: clip;
+  background: #262621;
+  color: #c1ac94;
+}
+
+.artist-profile-banner {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(10rem, 18.2vw, 23.125rem);
+  margin: 0;
+  pointer-events: none;
+}
+
+.artist-profile-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: fill;
+}
+
+.artist-detail-page .artist-profile-page {
+  position: relative;
+  z-index: 1;
+  width: min(99.875rem, calc(100% - 6.25rem));
+  max-width: none;
+  margin: 0 auto;
+  padding: clamp(2.25rem, 4vw, 5rem) 0 2rem;
+  text-align: left;
+}
+
+.artist-detail-page .back-link {
+  display: inline-block;
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.8rem);
+  color: #dc631a;
+  font-family: 'TwentiethCenturyMedium', sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+    font-size: 1.25rem;
+  text-underline-offset: 0.15em;
+}
+
+
+.artist-detail-page .back-link:hover {
+  color: #AD3230;
+}
+
+.artist-detail-page .back-link:focus-visible,
+.artist-detail-page .artist-profile-lastfm:focus-visible {
+  outline: 2px solid #dc631a;
+  outline-offset: 3px;
+}
+
+.artist-detail-page #profile-status {
+  margin: 0 0 1.5rem;
 }
 
 .back-link {
@@ -174,8 +748,71 @@ section.active {
   background-color: rgba(250, 248, 248, 0.8);
 }
 
+.artist-detail-page .artist-profile {
+  align-items: center;
+  gap: clamp(2rem, 4.9vw, 6.25rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
 .artist-profile[hidden] {
   display: none;
+}
+
+.artist-detail-page .artist-profile-image {
+  box-sizing: border-box;
+  width: min(41.25%, 41.2rem);
+  max-width: none;
+  aspect-ratio: 1;
+  flex: 0 0 min(41.25%, 41.2rem);
+  border: 2px solid #080807;
+  object-fit: cover;
+}
+
+.artist-detail-page .artist-profile > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.artist-detail-page .artist-profile-name {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 clamp(1.5rem, 4vw, 3.55rem);
+  padding: 0.25rem 1rem;
+  border: 1px solid #c1ac94;
+  color: #c1ac94;
+  /*font-family: 'Teko', sans-serif;*/
+  text-transform: uppercase;
+   font-family: 'Chreed', sans-serif; 
+  font-size: clamp(2rem, 5.2vw, 6.65rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.artist-detail-page .artist-profile-stats {
+  margin: 0 0 clamp(1.25rem, 3vw, 2.6rem);
+  color: #c1ac94;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.25rem, 2.35vw, 3rem);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.artist-detail-page .artist-profile-bio {
+  margin: 0 0 1rem;
+  color: #c1ac94;
+  font-size: clamp(0.9rem, 1.14vw, 1.45rem);
+  line-height: 1.3;
+}
+
+.artist-detail-page .artist-profile-lastfm {
+  color: #dc631a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .artist-profile-image {
@@ -185,7 +822,8 @@ section.active {
   object-fit: cover;
 }
 
-.artist-profile-name {
+.artist-profile-name h2{
+font-family: "Teko", sans-serif;
   overflow-wrap: anywhere;
 }
 
@@ -205,16 +843,274 @@ section.active {
   text-align: left;
 }
 
+.artist-detail-page .artist-albums-section {
+  display: block;
+  margin-top: clamp(2rem, 4.5vw, 3.5rem);
+  padding: 0;
+}
+
+.artist-detail-page .artist-albums-section h2 {
+  display: inline-block;
+  margin: 0 0 clamp(1.25rem, 2.6vw, 1.75rem);
+  padding: 0.15rem 0.85rem;
+  border: 1px solid #c1ac94;
+  color: #c1ac94;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.5rem, 2.35vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
 .artist-albums {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
+.artist-detail-page .artist-albums {
+  gap: clamp(1rem, 2.2vw, 2.8rem);
+}
+
+.artist-detail-page .album-card {
+  min-width: 0;
+}
+
 .album-card img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+}
+
+.artist-detail-page .album-card:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.artist-detail-page .album-card img {
+  display: block;
+  border: 1px solid #080807;
+}
+
+.album-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.album-card-link:focus-visible {
+  outline: 3px solid #dc631a;
+  outline-offset: 3px;
+}
+
+.artist-detail-page .artist-profile-footer {
+  padding: 1.25rem 0 0;
+  color: #dc631a;
+  text-align: center;
+}
+
+.artist-detail-page .artist-profile-footer p {
+  margin: 0;
+  font-family: 'Utendo', sans-serif;
+}
+
+.artist-detail-page .artist-profile-footer a {
+  color: inherit;
+}
+
+.tracklist-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  overflow-x: clip;
+  background: #262621;
+  color: #c1ac94;
+}
+
+.tracklist-waveform {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(10rem, 18.2vw, 23.125rem);
+  padding: 0;
+  pointer-events: none;
+}
+
+.tracklist-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(104.995rem, calc(100% - 7.5rem));
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2.5rem, 6.9vw, 8.8rem);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 4vw, 5.125rem) 0 2rem;
+}
+
+.tracklist-album,
+.tracklist-songs {
+  display: block;
+  min-width: 0;
+}
+
+.tracklist-back {
+display: flex;
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.7rem);
+  color: #dc631a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+    font-size: 1.25rem;
+}
+
+.tracklist-back:hover {
+    color: #AD3230;
+}
+
+
+.tracklist-back:focus-visible,
+.tracklist-lastfm:focus-visible {
+  outline: 2px solid #dc631a;
+  outline-offset: 3px;
+}
+
+.tracklist-artwork {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 1px;
+  align-items: center;
+  justify-content: flex-start;
+  aspect-ratio: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.tracklist-record {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 35%;
+  display: block;
+  transform: translateY(-50%) scale(0.6);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.tracklist-cover {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 76%;
+  aspect-ratio: 1;
+  border: 2px solid #080807;
+  object-fit: cover;
+}
+
+.tracklist-summary {
+  margin: 0 0 1rem;
+  color: #c1ac94;
+  font-size: clamp(0.9rem, 1vw, 1.25rem);
+  line-height: 1.3;
+}
+
+.tracklist-lastfm {
+  color: #dc631a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.tracklist-songs {
+  padding-top: clamp(4.5rem, 8vw, 8.75rem);
+}
+
+.tracklist-songs h1 {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 clamp(1.75rem, 4.5vw, 3rem);
+  padding: 0.25rem 1rem;
+  border: 1px solid #c1ac94;
+  color: #c1ac94;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(5vw);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tracklist-songs h2 {
+  margin: 0 0 1.5rem;
+  color: #c1ac94;
+  font-family: 'Chreed', sans-serif;
+  font-size: clamp(1.75rem, 2.85vw, 3.65rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#tracklist-status {
+  margin: 0 0 1rem;
+  color: #c1ac94;
+}
+
+#tracklist-status:empty {
+  display: none;
+}
+
+#tracklist-status[role="alert"] {
+  color: #ed9994;
+}
+
+#track-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track-row {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 3.5rem;
+  align-items: baseline;
+  gap: clamp(0.75rem, 2.2vw, 2rem);
+  color: #c1ac94;
+  font-size: clamp(0.9rem, 1vw, 1.25rem);
+  line-height: 1.2;
+}
+
+.track-number,
+.track-duration {
+  font-variant-numeric: tabular-nums;
+}
+
+.track-duration {
+  text-align: right;
+}
+
+.tracklist-footer {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 1rem 2.25rem;
+  color: #dc631a;
+  text-align: center;
+}
+
+.tracklist-footer p {
+  margin: 0;
+  font-family: 'Utendo', sans-serif;
+}
+
+.tracklist-footer a {
+  color: inherit;
 }
 
 @media (max-width: 600px) {
@@ -281,6 +1177,111 @@ fieldset {
 
 footer {
   padding: 2rem;
+}
+
+@media (max-width: 700px) {
+  .artist-grid {
+    --grid-inset: 1rem;
+    --grid-gap: 1rem;
+    grid-auto-rows: calc((100vw - 2 * var(--grid-inset) - 2 * var(--grid-gap)) / 3 + clamp(1rem, 4vw, 1.5rem));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 2rem;
+  }
+
+  .top-artists-header {
+    min-height: 5rem;
+    padding: 0.75rem 1rem 0.5rem;
+  }
+
+  .top-artists-header h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .top-artists-header p {
+    max-width: 40vw;
+    font-size: clamp(0.9rem, 3vw, 1.5rem);
+  }
+
+  .top-artists-back {
+    padding: 1rem 1rem 0;
+  }
+
+  .artist-card-featured .artist-card-name {
+    font-size: clamp(1.75rem, 6vw, 2.8rem);
+  }
+
+  .artist-card-name {
+    font-size: clamp(0.85rem, 2.8vw, 1.2rem);
+  }
+
+  .genre-grid {
+    --grid-inset: 1rem;
+    --grid-gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .genre-card-featured .genre-card-name {
+    font-size: clamp(1.75rem, 6vw, 2.8rem);
+  }
+
+  .genre-card-name {
+    font-size: clamp(0.9rem, 2.8vw, 1.2rem);
+  }
+
+  .charts-header {
+    min-height: 5rem;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+  }
+
+  .charts-header h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .charts-header time {
+    padding-bottom: 0.15rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .landing {
+    padding: 0 0.75rem 18vh;
+  }
+
+  .landing-title {
+    gap: 0;
+    font-size: clamp(1.5rem, 9.2vw, 4rem);
+  }
+
+  .landing-mark {
+    width: 0.58em;
+    height: 0.58em;
+    flex-basis: 0.58em;
+  }
+
+  .landing-mark img {
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+
+  .landing-report {
+    margin-left: 0.1em;
+  }
+
+  .dashboard {
+    padding: 1px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .artist-grid {
+    grid-auto-rows: calc((100vw - 2 * var(--grid-inset) - var(--grid-gap)) / 2 + 1rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .genre-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 header img {
@@ -464,4 +1465,88 @@ nav button {
 .fairy,
 .fairy .listing {
   background: #ee99ac
+}
+
+@media (max-width: 760px) {
+  .tracklist-layout {
+    width: calc(100% - 2rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .tracklist-back {
+    margin-bottom: 1.5rem;
+  }
+
+  .tracklist-artwork {
+    width: min(100%, 35rem);
+    aspect-ratio: 1.08;
+  }
+
+  .tracklist-record {
+    left: 34%;
+    transform: translateY(-50%) scale(0.42);
+  }
+
+  .tracklist-cover {
+    width: 78%;
+  }
+
+  .tracklist-songs {
+    padding-top: 1rem;
+  }
+
+  .tracklist-songs h1 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  .tracklist-songs h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  #track-list {
+    gap: 0.75rem;
+  }
+
+  .track-row {
+    grid-template-columns: 1.8rem minmax(0, 1fr) 3rem;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .artist-detail-page .artist-profile-page {
+    width: calc(100% - 2rem);
+    padding-top: 1.5rem;
+  }
+
+  .artist-detail-page .artist-profile {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .artist-detail-page .artist-profile-image {
+    width: min(100%, 32rem);
+    max-width: 100%;
+    flex-basis: auto;
+  }
+
+  .artist-detail-page .artist-profile > div {
+    width: 100%;
+  }
+
+  .artist-detail-page .artist-profile-name {
+    margin-bottom: 1.25rem;
+  }
+
+  .artist-detail-page .artist-profile-stats {
+    margin-bottom: 1rem;
+  }
+
+  .artist-detail-page .artist-albums {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

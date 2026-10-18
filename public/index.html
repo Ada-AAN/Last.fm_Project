@@ -7,11 +7,11 @@
     name="viewport"
     content="width=device-width"
   >
-  <title>Stats Central</title>
+  <title>Records Report | Last.fm Charts</title>
 
-  <!-- Pokemon Font via https://www.cdnfonts.com/pokemon-solid.font -->
+  <!-- Display font for headings. -->
   <link
-    href="https://fonts.cdnfonts.com/css/pokemon-solid"
+    href="https://fonts.cdnfonts.com/css/gajraj-one"
     rel="stylesheet"
   >
 
@@ -33,7 +33,7 @@
     rel="stylesheet"
     type="text/css"
   />
-  <!-- Use a Pokemon Coloured Base64 Pixel as Favicon. see also: https://png-pixel.com/ -->
+  <!-- Placeholder favicon. -->
   <link
     href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8HxzwHwAGXgKT5yJ2+AAAAABJRU5ErkJggg=="
     rel="icon"
@@ -41,24 +41,22 @@
   >
 </head>
 
-<body>
-  <header>
-    <!-- <img src="pokeball.svg"> -->
-    <h1>Stats Central</h1>
+<body class="charts-page">
+  <div class="loader" role="status" aria-label="Loading genres">
+    <img src="images/records-record-default.svg" alt="">
+  </div>
+  <header class="charts-header">
+    <h1>TOP GENRES</h1>
+    <time id="charts-date" aria-label="Page date"></time>
   </header>
-  <nav></nav>
-  <main></main>
-  <footer>
-    <p>This demo illustrates how we can make multiple fetches on one page. We first fetch a list of pokemon types,
-      followed by details for each. We then populate listings, such that each pokemon is connected to an individual
-      fetch for details, which in turn are shown in a popover. Data fetched from the <a
-        href="https://ws.audioscrobbler.com/2.0"></a>Last.fm API</p>
+  <main class="genre-grid" aria-label="Top music genres"></main>
+  <footer class="charts-footer">
+    <p>Designed using the <a href="https://www.last.fm/api">Last.fm API</a></p>
 
     <details id="image-credits" hidden>
       <summary>Image credits</summary>
       <ul></ul>
     </details>
-
   </footer>
   <script
     src="main.js"

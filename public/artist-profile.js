@@ -1,8 +1,15 @@
 import { getLocalArtistImage } from './artist-images.js';
 
 const artistName = new URLSearchParams(window.location.search).get('name');
+const genreName = new URLSearchParams(window.location.search).get('genre');
 const status = document.querySelector('#profile-status');
 const profile = document.querySelector('#artist-profile');
+const backLink = document.querySelector('.back-link');
+const loader = document.querySelector('.loader');
+
+if (genreName) {
+  backLink.href = `/topartists.html?genre=${encodeURIComponent(genreName)}`;
+}
 
 try {
   if (!artistName) {
@@ -28,7 +35,7 @@ try {
       .find(Boolean)?.['#text']
     || '';
 
-  document.title = `${artist.name} - Stats Central`;
+  document.title = `${artist.name} | Records Report`;
   profile.querySelector('.artist-profile-name').textContent = artist.name;
   profile.querySelector('.artist-profile-stats').textContent =
     `${Number(artist.stats?.listeners || 0).toLocaleString()} listeners · ` +
@@ -81,6 +88,17 @@ try {
     const card = document.createElement('article');
     card.className = 'album-card';
 
+    const link = document.createElement('a');
+    link.className = 'album-card-link';
+    const params = new URLSearchParams({
+      artist: artistName,
+      album: album.name
+    });
+    if (genreName) {
+      params.set('genre', genreName);
+    }
+    link.href = `/tracklist.html?${params.toString()}`;
+
     const imageURL =
       album.image?.find((image) => image.size === 'large' && image['#text'])?.['#text']
       || album.image?.find((image) => image['#text'])?.['#text'];
@@ -93,15 +111,15 @@ try {
       image.addEventListener('error', () => {
         image.hidden = true;
       });
-      card.appendChild(image);
+      link.appendChild(image);
     }
 
-    const title = document.createElement('p');
-    title.textContent = album.name;
-    card.appendChild(title);
+    card.appendChild(link);
     albumsContainer.appendChild(card);
   });
 } catch (error) {
   albumsContainer.textContent = `Could not load top albums: ${error.message}`;
   console.error('Could not load artist albums:', error);
+} finally {
+  loader.hidden = true;
 }
